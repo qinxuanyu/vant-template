@@ -1,22 +1,37 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <!-- <router-view /> -->
+    <van-nav-bar
+      :title="title"
+      left-arrow
+      fixed 
+      @click-left="$router.go(-1)"
+      :leftArrow="!$route.query.from"
+    />
+    <router-view></router-view>
   </div>
 </template>
-
+<script>
+export default {
+  computed:{
+    title(){
+      return this.$route.meta.title
+    }
+  }
+}
+</script>
 <style lang="less">
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  padding-top: 46px;
   color: #2c3e50;
 }
-
+.van-button{
+  height: 45px;
+  font-size: 16px;
+}
 #nav {
   padding: 30px;
 
